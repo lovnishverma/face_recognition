@@ -1,5 +1,45 @@
 # Face Recognition
 
+
+
+Have you ever faced the **classic dlib problem**.
+
+<img width="1176" height="287" alt="image" src="https://github.com/user-attachments/assets/8626ad79-d22a-43a8-837e-3ff7ebc1905f" />
+
+
+The package `face_recognition` from PyPI depends on `dlib`, and `dlib` doesn’t ship wheels for all platforms/Python versions (especially new ones like Python 3.13). So pip tries to **compile `dlib` from source**, but your system doesn’t have **CMake + Visual Studio Build Tools** set up — and compilation fails.
+
+That’s why:
+
+```text
+face_recognition @ git+https://github.com/lovnishverma/face_recognition.git
+```
+
+exists — it’s a **precompiled/custom build of `face_recognition` bundled with a prebuilt `dlib` wheel**.
+So instead of pulling from PyPI and trying to build `dlib` locally, pip just installs your forked repo (which already has dlib binaries, or avoids compiling it altogether).
+
+---
+
+### Why this works:
+
+* Official `face_recognition` = depends on `dlib` → needs CMake/build tools.
+* Forked repo = modified to **use precompiled dlib binaries**, so no compilation headaches.
+* When you `pip install -r requirements.txt`, pip installs directly from your GitHub fork, skipping the failing build process.
+
+---
+
+✅ If you want to use it, stick to:
+
+```bash
+pip install "face_recognition @ git+https://github.com/lovnishverma/face_recognition.git"
+```
+
+instead of `pip install face_recognition`.
+
+---
+
+
+
 _You can also read a translated version of this file [in Chinese 简体中文版](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md) or [in Korean 한국어](https://github.com/ageitgey/face_recognition/blob/master/README_Korean.md) or [in Japanese 日本語](https://github.com/m-i-k-i/face_recognition/blob/master/README_Japanese.md)._
 
 Recognize and manipulate faces from Python or from the command line with
