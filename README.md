@@ -10,9 +10,9 @@ Example error:
 
 To solve this, this fork provides a **precompiled/custom build of `face_recognition` bundled with a prebuilt `dlib` wheel**.
 
-✅ No CMake
-✅ No Visual Studio setup
-✅ Works on Python 3.9 → 3.13 (Windows)
+* No CMake
+* No Visual Studio setup
+* Works on Python 3.9 → 3.13 (Windows)
 
 ---
 
